@@ -68,9 +68,7 @@ module.exports = {
     const options = {
       qos: 2,
     };
-
-    await this._client.subscribe(topic, options);
-    await this._client.on('message', (topic, payload, packet) => {
+    await this._client.on('message', (topic, payload) => {
       console.log(topic);
       console.log('payload.toString()');
       console.log(`-${payload}-`);
@@ -78,6 +76,7 @@ module.exports = {
         console.log('do something');
       }
     });
+    await this._client.subscribe(topic, options);
 
     return true
   },
